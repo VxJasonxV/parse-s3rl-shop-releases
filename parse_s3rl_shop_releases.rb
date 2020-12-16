@@ -73,7 +73,7 @@ HTML
   tracklist.each_with_index do |t, i|
     title = "#{release['title']} (#{t})"
 seed << <<-HTML
-      <input name="mediums.0.track.#{i}.name type="text" value="#{title}" /><br />
+      <input name="mediums.0.track.#{i}.name" type="text" value="#{title}" /><br />
 HTML
   end
 seed << <<-HTML
@@ -95,7 +95,7 @@ seed << <<-HTML
 HTML
 
   puts seed
-  #File.write("#{ENV['HOME']}/tmp/seed.html", seed)
-  #system('open', "#{ENV['HOME']}/tmp/seed.html")
-  #gets
+  File.write("#{ENV['HOME']}/tmp/seed.html", seed)
+  system('open', "#{ENV['HOME']}/tmp/seed.html")
+  gets
 end
