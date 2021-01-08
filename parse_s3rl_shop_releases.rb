@@ -2,7 +2,7 @@ require 'httparty'
 require 'oga'
 
 # https://djs3rl.com/shop/EMFA?limit=100
-page = HTTParty.get('https://djs3rl.com/shop/EMFA?limit=5')
+page = HTTParty.get('https://djs3rl.com/shop/EMFA?limit=1')
 page_parsed = Oga.parse_html(page)
 
 release_pages = []
@@ -80,14 +80,7 @@ seed << <<-HTML
       <input name="urls.0.url" type="text" value="#{release['url']}" /><br />
       <input name="urls.0.link_type" type="text" value="74" /><br />
 
-      <textarea name="edit_note" type="text">Data comes from a S3RL Web Store scraper I built and ran against S3RL's shop ( https://github.com/VxJasonxV/parse-s3rl-shop-releases ).
-
-      The Shop does not contain track numbers, I have opted to put Radio Edits first which is what I've conventionally seen on digital releases, such as https://music.apple.com/us/album/reflections-feat-lokka-vox-single/1477673119 for example. S3RL's own releases at least on iTunes tend to only have the Radio Edit, but a number of other (UK/AU/Happy) Hardcore digital releases I've added have followed this convention.
-
-      Also, when viewing the majority of releases on the shop ( ex. https://djs3rl.com/shop/Dopamine -> https://i.imgur.com/g12qHZl.png ) the sort order is Radio Edit before DJ Edit, (both) MP3 before WAV.
-
-      Any other tracks will be alphabetically sorted starting from A following Radio Edit.
-      </textarea><br />
+      <textarea name="edit_note" type="text">#{release['url']}</textarea><br />
       <input type="submit" value="seed" />
     </form>
   </body>
