@@ -87,8 +87,12 @@ seed << <<-HTML
 </html>
 HTML
 
-  puts seed
-  File.write("#{ENV['HOME']}/tmp/seed.html", seed)
-  system('open', "#{ENV['HOME']}/tmp/seed.html")
+  require 'tempfile'
+
+  file = Tempfile.new(['s3rlshop','.html'])
+  file.write(seed)
+  file.close
+  puts file
+  system('open', file.path)
   gets
 end
